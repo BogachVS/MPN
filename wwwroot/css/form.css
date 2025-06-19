@@ -1,0 +1,10 @@
+﻿.post_form {
+    margin: 0 auto;
+    padding: 10px;
+    border: solid 3px #f3a505;
+    border-radius: 5px;
+    text-align: center;
+}
+button{
+    padding:10px;
+}

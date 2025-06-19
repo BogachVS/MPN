@@ -1,0 +1,65 @@
+﻿@page
+@model MPN.Pages.ParametersPageModel 
+    <h3>Параметры для моделирования</h3>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+    <div class="row">
+        <div class="col" id="parameters_text">
+            <p><strong>Тип ограничивающей области : </strong>система может быть представлена в виде сферы или куба, 
+                поскольку это наиболее подходящие геометрические фигуры для моделирования</p>
+            <p><strong>Размер ограничивающей области : </strong>в случае если это сфера - это будет её радиус, 
+                если же это куб, то это будет длина его ребра</p>
+            <p><strong>Количество частиц : </strong>частицы представлены в виде дисков, поскольку это наиболее
+                простой геометрический примитив</p>
+            <p><strong>Размер самой маленькой и самой большой частицы : </strong>диапазон для распределения радиусов частиц</p>
+            <p><strong>Параметры для Гамма распределения : </strong>радиусы частиц это случайные величины, 
+                полученные Гамма распределением. У Гамма распределения есть форма(k) и масштаб(θ)</p>
+            <p><strong>Количество слоев : </strong>слои нужны для анализа данных и не будут визуализированы в системе</p>
+        </div>
+        <div class="col">
+        <form class="post_form" method="post">
+                <label style="padding-bottom:10px">Параметры области</label>
+                <div class="form-floating mb-3">
+                    <select class="form-select form-control" id="Shape" asp-for="param.ShapeType" required>
+                        <option value="Sphere">Сфера</option>
+                        <option value="Cube">Куб</option>
+                    </select>
+                <label for="Shape">Тип ограничивающей области</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="1" step=".01" id="R" asp-for="param.Size" required/>
+                    <label for="R">Размер ограничивающей области</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="1" step="1" id="DiscCount" asp-for="param.DiscCount" required />
+                    <label for="DiscCount">Количество частиц</label>
+                </div>
+                <label style="padding-bottom:10px">Параметры частиц</label>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="0.1"  step=".01" id="R_max" asp-for="param.R_max" required />
+                    <label for="R_max">Размер самой большой частицы</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="0.1" step=".01" id="R_min" asp-for="param.R_min" required />
+                    <label for="R_min">Размер самой маленькой частицы</label>
+                </div>
+                <label style="padding-bottom:10px">Параметры Гамма распределения</label>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="0.1" step=".01" id="K" asp-for="param.K" required />
+                    <label for="K">Форма</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="0.1" step=".01" id="Theta" asp-for="param.Theta" required />
+                    <label for="Theta">Масштаб</label>
+                </div>
+                <label style="padding-bottom:10px">Параметры для анализа</label>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" min="1" step="1" id="LayerCount" asp-for="param.LayerCount" required />
+                    <label for="LayerCount">Количество слоев</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить данные</button>
+            </form>
+        </div>
+    </div>

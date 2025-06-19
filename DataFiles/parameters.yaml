@@ -1,0 +1,8 @@
+shapeType: Sphere
+size: 20
+discCount: 5000
+rMin: 0.1
+rMax: 0.8
+k: 2
+theta: 3
+layerCount: 10
